@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solana Verify Success</title>
+    <link rel="stylesheet" type="text/css" href="/styles2.css">
+    <meta name="format-detection" content="telephone=no">
+</head>
+<body>
+  <div class="container">
+    <h1>Registration Found</h1>
+      <p>SHA-256 hash from input : <%= fileHash %> </p>
+      <p class="custom-line"><%= txEval[0] %> </p>
+      <br>
+      <p>
+
+      <% if (txEval[2]) { %>
+        <div>
+          <p>Transaction memo includes a provenance claim : <%= txEval[2] %></p>
+        </div>
+      <% } %>
+      <% if (txEval[1]) { %>
+        <p class="custom-line">Solana registration occurred within  <strong><%= txEval[1] %></strong>  of timestamp cited in claim</p>
+        <br>
+      <% } %>
+    <h1>Transaction Details</h1>
+      <p>Information retrieved from Solana network about the registration transaction
+      <p><strong>signature : </strong></p>
+      <p><%= txReturn.signatures[0] %></p>
+      <p><strong>blockTime : </strong><%= txReturn.blockTime %></p>
+      <p><strong>slot : </strong><%= txReturn.slot %></p>
+      <p><strong>logMessages : </strong></p>
+      <ul>
+        <% txReturn.logMessages.forEach(function(log) { %>
+          <li><%= log %></li>
+        <% }); %>
+      </ul>
+  </div>
+</body>
+</html>
