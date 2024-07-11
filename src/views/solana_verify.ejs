@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Verify Portal</title>
+ <link rel="stylesheet" type="text/css" href="/styles2.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Verify Portal</h1>
+
+<% if (typeof error != 'undefined') { %>
+ <div><%= error %></div>
+<% } %>
+
+<% if (typeof notice != 'undefined') { %>
+ <div><%= notice %></div>
+<% } %>
+
+    <form id="solana_form" action="/solana/check" method="post">
+     <br>
+     <label for="fileHash">SHA-256 hash of the data to verify : </label>
+     <input id="fileHash" name="fileHash" type="text" value="">
+     <br>
+     <label for="txSig">Solana transaction signature : </label>
+     <input id="txSig" name="txSig" type="text" value="">
+     <br>
+     <br>
+     <button type="submit" class="larger-button">Verify</button>
+    </form>
+  </div>
+</body>
+</html>
+
+

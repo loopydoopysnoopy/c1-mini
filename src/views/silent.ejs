@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <style>
+        body {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<% if (typeof error != 'undefined') { %>
+ <div><%= error %></div>
+<% } %>
+
+<% if (typeof notice != 'undefined') { %>
+ <div><%= notice %></div>
+<% } %>
+
+  <form id="sa_form" action="/silent/start" method="post">
+   <input type="hidden" name="redirect_url" id="redirect_url" value="">
+   <label for="number">Please enter your phone number:</label>
+   <input id="number" name="number" type="phone" autocomplete="phone" value="">
+   <button type="submit">Start</button>
+ </form>
+ <script>
+   document.getElementById('redirect_url').value = window.location.href + '/callback';
+ </script>
+</body>
+</html>

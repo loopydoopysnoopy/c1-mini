@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div id="url"></div>
+  <div id="error"></div>
+  <div id="notice"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const url = new URL(window.location.href);
+const params = new URLSearchParams(url.hash.substring(1));
+document.getElementById('notice').innerHTML = params.toString();
+
+if (params.has('error_description')) {
+  const error_description = params.get('error_description');
+  document.getElementById('error').innerHTML = error_description;
+}
+
+const request_id = params.get('request_id');
+const code = params.get('code');
+
+window.location.href = window.location.origin + '/silent/check?request_id=' + request_id + '&code=' + code;
+
+
+  })
+  </script>
+
+</body>
+</html>
