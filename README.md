@@ -24,28 +24,22 @@ Some Solana network settings are already populated in the .env_template file.
 
 ### Environment Variables
 
-Create a `.env` file in the root of your project and add the following environment variables:
+Create a `.env` file in the root of your project and add the following environment variables :
 
-- 'VONAGE_APPLICATION_ID' : 
-- 'VONAGE_PRIVATE_KEY_PATH' :
-- 'VONAGE_API_KEY' : 
-- 'VONAGE_API_SECRET' : 
-
-- 'VONAGE_FROM_NUMBER' : 
-- 'VONAGE_BRAND_NAME' : 
-
-- 'APPROVAL_NUMBER' : 
-- 'ALLOWED_NUMBERS_PATH' :
-
-- 'SERVER_BASE_URL' :
-
-
-- 'SOLANA_MEMO_PROGRAM_ID' : 
-- 'SOLANA_CONNECTION_URL' : 
-- 'EXPLORE_URL_QUERY' : 
-- 'SOLANA_KEY_PATH' :
-  
-- 'MAIN_SOLANA_MEMO_PROGRAM_ID' : 
-- 'MAIN_SOLANA_CONNECTION_URL' : 
-- 'MAIN_EXPLORE_URL_QUERY' : 
-- 'MAIN_SOLANA_KEY_PATH' : 
+- `VONAGE_API_KEY` :
+- `VONAGE_API_SECRET` :
+- `VONAGE_APPLICATION_ID` :
+- `VONAGE_PRIVATE_KEY_PATH` :
+- `VONAGE_FROM_NUMBER` :
+- `VONAGE_BRAND_NAME` :
+- `APPROVAL_NUMBER` :
+- `ALLOWED_NUMBERS_PATH` :
+- `SERVER_BASE_URL` :
+- `SOLANA_KEY_PATH` :
+- `SOLANA_MEMO_PROGRAM_ID` :
+- `SOLANA_CONNECTION_URL` :
+- `EXPLORE_URL_QUERY` :
+- `MAIN_SOLANA_KEY_PATH` :
+- `MAIN_SOLANA_MEMO_PROGRAM_ID` :
+- `MAIN_SOLANA_CONNECTION_URL` :
+- `MAIN_EXPLORE_URL_QUERY` :
