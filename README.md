@@ -6,6 +6,11 @@ c1-mini is an application to interface with end users using A2P SMS, perform sil
 # Requirements
 
 
-# Configuring
+## Configuration
 All project configurations currently exist as environment variables.  
-Some Solana network settings are already populated in the .env_template file.
+Some Solana network settings are already populated in the .env_template file.  
+
+### Environment Variables
+
+Create a `.env` file in the root of your project and add the following environment variables:
+
