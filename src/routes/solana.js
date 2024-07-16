@@ -106,7 +106,7 @@ export const solanaCheck = async (req, res) => {
       } 
 
       console.log(txEval);
-      res.render('basic_solana_success', { fileHash, txEval, txReturn });
+      res.render('solana_success', { fileHash, txEval, txReturn });
 
     } else {
        console.log('File Hash Not Found');
@@ -186,8 +186,8 @@ function evaluateClaimTime( claimTime , blockTime ) {
     deltaWindow = wholeQuotient + ' days';
   }
   
-  if (deltaWindow != '') evalResult.push('This registration occured within ' + deltaWindow + ' of the time cited in claim');
-  evalResult.push('Claim: File was last modified ' + claimTimeString);
+  if (deltaWindow != '') evalResult.push(deltaWindow);
+  evalResult.push('File was last modified ' + claimTimeString);
 
   return evalResult;
 };
