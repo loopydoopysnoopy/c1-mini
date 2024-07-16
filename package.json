@@ -1,7 +1,7 @@
 {
   "name": "c1-mini",
   "version": "1.0.0",
-  "description": "Application to interface with end users using A2P SMS, perform silent authentication of Subscribers from a web browser, and register user SMS memos to the Solana blockchain, and then use transaction data to verify data authenticity. ",
+  "description": "Application to interface with end users using A2P SMS, perform silent authentication of Subscribers from a web browser, register user SMS memos to the Solana blockchain, and then use transaction data to verify data authenticity. ",
   "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
