@@ -7,9 +7,12 @@ c1-mini is an application to interface with end users using A2P SMS, perform sil
 
 ## Prerequisites  
 
+### NodeJS  
 Ensure you have the following installed:
 - [Node.js](https://nodejs.org/) (LTS version 20.x or later)
 - [npm](https://www.npmjs.com/) (comes with Node.js)
+
+### Application Server Exposure  
 
 ### Vonage Developer Requirements
 
@@ -28,7 +31,7 @@ Ensure you have the following installed:
 - Submitting transactions to the mainnet-beta endpoint requires the purchase of real SOL tokens.
 - It may be helpful to maintain two separate wallets for your real and fake tokens. 
 
-#### Additional Solana Client Notes
+### Additional Solana Client Notes
 This project uses the public RPC endpoints hosted by Solana Labs. These API endpoints are meant for experimental use cases only and are subject to rate limits. For higher rates and production application usage, you should host a private RPC endpoint. Please see the Solana documentation for more details: [Clusters and Public RPC Endpoints](https://solana.com/docs/core/clusters)
 
 ### Solana Program
@@ -67,9 +70,12 @@ Create a `.env` file in the root of your project and add the following environme
 - `MAIN_EXPLORE_URL_QUERY` : This value is deliberately an empty string in `.env_template.` Default explorer url goes to mainnet.  
 
 ### Using the Project with Solana Mainnet
+Solana Mainnet configuration should be used for actual project deployments (vs. demos) or as a backup if the Devnet cluster is down.  
+The Devnet cluster may be subject to ledger resets. Mainnet-beta is a permissionless, persistent cluster for Solana users, builders, validators and token holders. Mainnet-beta transactions require a balance of real SOL tokens.  
+- For up-to-date status information, join the [Solana Tech Discord](https://discord.com/invite/kBbATFA7PW) server and the devnet-announcements channel.
 
-Currently, this needs to be adjusted manually in the project code itself.  
-Modify the following variables to their MAIN_X counterparts :  
+Currently, the cluster setting needs to be modified manually in the project code itself.  
+Change the following variables to their MAIN_X counterparts :  
 
 In /src/routes/messages.js
 - const EXPLORE_URL_QUERY = process.env.`EXPLORE_URL_QUERY`;
@@ -79,5 +85,24 @@ In /src/routes/solana.js
 - const PROGRAM_ID = new PublicKey(process.env.`SOLANA_MEMO_PROGRAM_ID`);
 - const connection = new Connection(process.env.`SOLANA_CONNECTION_URL`, "confirmed");
 
+You can use the Memo Program already deployed to and maintained on the Solana Mainnet.  
+The Program ID for this program is provided in `.env_template`. As the application is currently written, the string including the logged memo will still be the second element of the txResponse.meta.logMessages array in the solana.js solanaCheck function (same as for the Devnet program). If this is not the case, modify the assignment of tx_memo in this same function.  
+See Solana program library documentation for information about the mainnet [Memo Program](https://spl.solana.com/memo)  
 
-See Solana program library documentation for information about the mainnet [Memo Program](https://spl.solana.com/memo)
+## Running the Application
+After cloning the repo, run the npm command from the project root directory to install the dependencies listed in the package.json file:  
+$ npm install
+
+(Note: the package.json file also includes the line   "type": "module"  because this app uses [ES6 modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) rather than [Common JS](https://nodejs.org/api/modules.html))
+
+### Dependencies
+| Package | Description |
+|:---------|:---------|
+| @solana/web3.js |  |
+| @vonage/jwt |  |
+| axios |  |
+| buffer |  |
+| cookie parser |  |
+| dotenv |  |
+| ejs |  |
+| express |  |
