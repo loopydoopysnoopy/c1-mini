@@ -125,7 +125,7 @@ export const solanaCheck = async (req, res) => {
 /*
 * function: getClaimTime( memo )
 * params: memo as string
-* returns: dataObject if found, null otherwise  
+* returns: dateObject if found, null otherwise  
 * assumes: iosProofSearch and androidProofSearch already declared and assigned as module level vars
 * magic numbers: 29, 24 are expected str lengths of proofmode capture methods used to illustrate demo 
 */
