@@ -3,7 +3,7 @@
 ⚠️ STILL IN DEVELOPMENT ⚠️  
 Further documentation and instructions coming soon
 
-c1-mini is an application to interface with end users using A2P SMS, perform silent authentication of Subscribers from their mobile web browser, register user SMS memos to the Solana blockchain, and then use transaction data to verify data authenticity.
+C1-Mini is an application to interface with end users using A2P SMS, perform silent authentication of Subscribers from their mobile web browser, register user SMS memos to the Solana blockchain, and then use transaction data to verify data authenticity.
 
 ## Prerequisites  
 
@@ -26,12 +26,12 @@ Ensure you have the following installed:
 
 ### Solana Wallet
 - Create a Solana Wallet using a method that gives direct access to the private key
-   - (Add note about JSON and expected array format)
+   - (ALISHA: Add note about JSON and expected array format)
 - Devnet tokens are not real SOL. You can request a token airdrop to your wallet address using the Solana CLI or sources such as the [Solana Faucet](https://faucet.solana.com)
 - Submitting transactions to the mainnet-beta endpoint requires the purchase of real SOL tokens.
 - It may be helpful to maintain two separate wallets for your real and fake tokens. 
 
-### Additional Solana Client Notes
+#### Additional Solana Client Notes
 This project uses the public RPC endpoints hosted by Solana Labs. These API endpoints are meant for experimental use cases only and are subject to rate limits. For higher rates and production application usage, you should host a private RPC endpoint. Please see the Solana documentation for more details: [Clusters and Public RPC Endpoints](https://solana.com/docs/core/clusters)
 
 ### Solana Program
@@ -75,12 +75,12 @@ The Devnet cluster may be subject to ledger resets. Mainnet-beta is a permission
 - For up-to-date status information, join the [Solana Tech Discord](https://discord.com/invite/kBbATFA7PW) server and the devnet-announcements channel.
 
 Currently, the cluster setting needs to be modified manually in the project code itself.  
-Change the following variables to their MAIN_X counterparts :  
+Change the following variables to their MAIN_X counterparts in these /src/routes files :  
 
-In /src/routes/messages.js
+In messages.js
 - const EXPLORE_URL_QUERY = process.env.`EXPLORE_URL_QUERY`;
   
-In /src/routes/solana.js  
+In solana.js  
 - const fileContentString = fs.readFileSync(process.env.`SOLANA_KEY_PATH`, 'utf8');
 - const PROGRAM_ID = new PublicKey(process.env.`SOLANA_MEMO_PROGRAM_ID`);
 - const connection = new Connection(process.env.`SOLANA_CONNECTION_URL`, "confirmed");
@@ -91,9 +91,14 @@ See Solana program library documentation for information about the mainnet [Memo
 
 ## Running the Application
 After cloning the repo, run the npm command from the project root directory to install the dependencies listed in the package.json file:  
+```shell
 $ npm install
+```
 
-(Note: the package.json file also includes the line   "type": "module"  because this app uses [ES6 modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) rather than [Common JS](https://nodejs.org/api/modules.html))
+( Note: the package.json file also includes the line  "type" : "module" because this app uses [ES6 modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) rather than [Common JS](https://nodejs.org/api/modules.html) )
+
+(ALISHA: RUN THE APPLICATION SAME DIR NODE COMMAND LISTENING PORT 3000 CAN CHANGE IN APPJS)  
+(ALISHA: NGROK TO SAME PORT - NGROK REG AND STATIC DOMAIN COMMANDS)
 
 ### Dependencies
 | Package | Description |
