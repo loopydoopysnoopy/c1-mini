@@ -103,11 +103,12 @@ $ npm install
 ### Dependencies
 | Package | Description |
 |:---------|:---------|
-| @solana/web3.js |  |
-| @vonage/jwt |  |
+| express | This project uses the [ExpressJS](https://expressjs.com) web and mobile application framework |
+| cookie-parser | [cookie-parser](https://github.com/expressjs/cookie-parser) is an ExpressJS middleware module that can be used for session management or debugging |
+| ejs | Embedded Javascript ([ejs](https://ejs.co)) is a simple and powerful HTML template engine for dynamic rendering with NodeJS |
 | axios |  |
-| buffer |  |
-| cookie parser |  |
-| dotenv |  |
-| ejs |  |
-| express |  |
+| dotenv | [dotenv](https://www.dotenv.org) is used to read in the environment variables from `.env` |
+| buffer | The [buffer](https://nodejs.org/api/buffer.html) module handles binary data and is used to convert memos into Solana transaction instructions |
+| @vonage/jwt | We use the the [Vonage Node JWT library](https://www.npmjs.com/package/@vonage/jwt) to create JWT Tokens for easy auth of Vonage credentials |
+| @solana/web3.js |  |
+
