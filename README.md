@@ -97,8 +97,16 @@ $ npm install
 
 ( Note: the package.json file also includes the line  "type" : "module" because this app uses [ES6 modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) rather than [Common JS](https://nodejs.org/api/modules.html) )
 
-(ALISHA: RUN THE APPLICATION SAME DIR NODE COMMAND LISTENING PORT 3000 CAN CHANGE IN APPJS)  
-(ALISHA: NGROK TO SAME PORT - NGROK REG AND STATIC DOMAIN COMMANDS)
+Run the application using the NodeJS command from the project root directory:
+```shell
+$ node src/app.js
+```
+By default, your app will listen for incoming HTTP requests on port 3000. This can be modified within the app.js file.  
+
+If necessary, establish an ngrok tunnel routing incoming requests to this same port:
+```shell
+$ nrgok http -domain=<YOUR_STATIC_DOMAIN_URL> 3000
+```
 
 ### Dependencies
 | Package | Description |
@@ -106,9 +114,9 @@ $ npm install
 | express | This project uses the [ExpressJS](https://expressjs.com) web and mobile application framework |
 | cookie-parser | [cookie-parser](https://github.com/expressjs/cookie-parser) is an ExpressJS middleware module that can be used for session management or debugging |
 | ejs | Embedded Javascript ([ejs](https://ejs.co)) is a simple and powerful HTML template engine for dynamic rendering with NodeJS |
-| axios |  |
+| axios | [axois](https://axios-http.com/docs/intro) is a promised-based client for NodeJS to make HTTP calls from our backend to the APIs |
 | dotenv | [dotenv](https://www.dotenv.org) is used to read in the environment variables from `.env` |
 | buffer | The [buffer](https://nodejs.org/api/buffer.html) module handles binary data and is used to convert memos into Solana transaction instructions |
 | @vonage/jwt | We use the the [Vonage Node JWT library](https://www.npmjs.com/package/@vonage/jwt) to create JWT Tokens for easy auth of Vonage credentials |
-| @solana/web3.js |  |
+| @solana/web3.js | The [Solana Javascript SDK](https://solana-labs.github.io/solana-web3.js/index.html) lets us interact with accounts and programs through the Solana [RPC JSON API](https://solana.com/docs/rpc)  |
 
