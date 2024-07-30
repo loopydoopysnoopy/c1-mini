@@ -38,8 +38,7 @@ This project uses the public RPC endpoints hosted by Solana Labs. These API endp
 
 When submitting to the mainnet-beta endpoint, target the preexisting Solana Memo Program (see Configuration section).
 
-For use with Devnet or Testnet, you can build a simple Rust memo program and deploy it to the respective Solana cluster.  
-Most robust method: compile the Rust program down to Berkeley Packet Filter byte code and then deploy as a smart contract using the Solana CLI tool (which breaks the code into chunks and submits it as a series of rapid fire transactions).  
+For use with Devnet or Testnet, you can build a simple Rust memo program and deploy it to the respective Solana cluster. The most robust method is to compile the Rust program down to Berkeley Packet Filter byte code and then deploy it as a smart contract using the Solana CLI tool (which breaks the code into chunks and submits it as a series of rapid fire transactions).  
 See [Solana CLI](https://docs.solanalabs.com/cli/install) and [Program](https://solana.com/docs/programs/overview) documentation for details.  
 Reference code for `lib.rs` and `Cargo.toml` files can found in /docs/solana_memo_program.  
 
