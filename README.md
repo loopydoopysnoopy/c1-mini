@@ -13,12 +13,21 @@ Ensure you have the following installed:
 - [npm](https://www.npmjs.com/) (comes with Node.js)
 
 ### Vonage Developer Requirements
+This application uses the Vonage [Communications API Platform](https://www.vonage.com/communications-apis/apis/) for messaging and subscriber phone number verification.  
+Settings can be easily configured and inspected using either the [developer portal](https://dashboard.nexmo.com) or the [Vonage CLI](https://github.com/Vonage/vonage-cli/) tools.   
+Consult the API Reference documentation for the [Verify V2 API](https://developer.vonage.com/en/api/verify.v2) and [Messages API](https://developer.vonage.com/en/api/messages) as needed.
 
 #### Vonage Developer Account 
+- Create a free account using the Vonage Developer Portal
+- Add funds to cover phone number rental and API calls
+- Toggle Dashboard > API Settings > SMS Settings from "SMS API" to "Messages API"  
+ Vonage has two different APIs capable of sending and receiving SMS. You can only use one at a time because it will change the format of the webhooks you receive. This application uses the Messages API to handle SMS.  
+- Add the `VONAGE_API_KEY` and `VONAGE_API_SECRET` values from the dashboard to your `.env`
+  
+#### Vonage Phone Number 
+You will need to 
 
 #### Vonage Application 
-
-#### Vonage Phone Number 
 
 #### Vonage Brand Name
 
@@ -27,9 +36,10 @@ Ensure you have the following installed:
 ### Solana Wallet
 - Create a Solana Wallet using a method that gives direct access to the private key
    - (ALISHA: Add note about JSON and expected array format)
+   - (ALISHA: Add note about phantom)
 - Devnet tokens are not real SOL. You can request a token airdrop to your wallet address using the Solana CLI or sources such as the [Solana Faucet](https://faucet.solana.com)
 - Submitting transactions to the mainnet-beta endpoint requires the purchase of real SOL tokens.
-- It may be helpful to maintain two separate wallets for your real and fake tokens. 
+- It may be helpful to maintain two separate wallets and security levels for your real and fake tokens. 
 
 #### Additional Solana Client Notes
 This project uses the public RPC endpoints hosted by Solana Labs. These API endpoints are meant for experimental use cases only and are subject to rate limits. For higher rates and production application usage, you should host a private RPC endpoint. Please see the Solana documentation for more details: [Clusters and Public RPC Endpoints](https://solana.com/docs/core/clusters)
@@ -40,7 +50,7 @@ When submitting to the mainnet-beta endpoint, target the preexisting Solana Memo
 
 For use with Devnet or Testnet, you can build a simple Rust memo program and deploy it to the respective Solana cluster. The most robust method is to compile the Rust program down to Berkeley Packet Filter byte code and then deploy it as a smart contract using the Solana CLI tool (which breaks the code into chunks and submits it as a series of rapid fire transactions).  
 See [Solana CLI](https://docs.solanalabs.com/cli/install) and [Program](https://solana.com/docs/programs/overview) documentation for details.  
-Reference code for `lib.rs` and `Cargo.toml` files can found in /docs/solana_memo_program.  
+Reference source code for `lib.rs` and `Cargo.toml` files is available in /docs/solana_memo_program.  
 
 Once deployed, assign the resulting public program address to `SOLANA_MEMO_PROGRAM_ID` in your `.env` file.  
 <br>
@@ -49,14 +59,13 @@ Once deployed, assign the resulting public program address to `SOLANA_MEMO_PROGR
 
 ### Allowed Numbers
 `allowed_numbers.json` consists of the single field &nbsp; &nbsp; &nbsp;allowed_numbers: number[ ]  
-This is an array of the end user phone numbers authorized to use this app.  
-The same framework can be extended to manage per-number usage balances and more specific permission settings.
+This is an array of the end user phone numbers authorized to use this app. The same framework can be extended to manage per-number usage balances and more finely-tuned permission settings.
 
 - Numbers must follow the [E.164 Format](https://en.wikipedia.org/wiki/E.164) (for all Vonage API interfaces), omitting the leading + or 0s in international access codes along with any other special characters. For example, a US number would have the format 14155550101. A UK number would have the format 447700900123. See this [Vonage guide](https://developer.vonage.com/en/voice/voice-api/concepts/numbers) for details. 
-- Flag: As is, permissions are checked only at incoming SMS stages. Successful Vonage Silent Authentication and Solana registration procedures both cost tokens and can currently be initiated without permissions checking. Amend as needed.
+- Note: As is, permissions are checked only at incoming SMS stages. Successful Vonage Silent Authentication and Solana registration procedures both cost tokens and can currently be initiated without permissions checking. Amend as needed.
 
-#### Join Procedure
-Select an admin phone number to authorize join requests and add this `APPROVAL_NUMBER` to your `.env` file.  
+#### Approving New Users
+Identify an admin phone number to authorize join requests and add this `APPROVAL_NUMBER` to your `.env` file.  
 The admin number does not need to be in a Silent Authentication Territory. 
 
 ### Environment Variables
