@@ -43,7 +43,7 @@ Most robust method: compile the Rust program down to Berkeley Packet Filter byte
 See [Solana CLI](https://docs.solanalabs.com/cli/install) and [Program](https://solana.com/docs/programs/overview) documentation for details.  
 Reference code for `lib.rs` and `Cargo.toml` files can found in /docs/solana_memo_program.  
 
-Once deployed, add the returned `SOLANA_MEMO_PROGRAM_ID` to your `.env` file.  
+Once deployed, assign the public program address to `SOLANA_MEMO_PROGRAM_ID` in your `.env` file.  
 <br>
 
 ## Configuration  
