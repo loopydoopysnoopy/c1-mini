@@ -12,8 +12,6 @@ Ensure you have the following installed:
 - [Node.js](https://nodejs.org/) (LTS version 20.x or later)
 - [npm](https://www.npmjs.com/) (comes with Node.js)
 
-### Application Server Exposure  
-
 ### Vonage Developer Requirements
 
 #### Vonage Developer Account 
@@ -23,6 +21,8 @@ Ensure you have the following installed:
 #### Vonage Phone Number 
 
 #### Vonage Brand Name
+
+### Application Server Exposure  
 
 ### Solana Wallet
 - Create a Solana Wallet using a method that gives direct access to the private key
@@ -36,14 +36,29 @@ This project uses the public RPC endpoints hosted by Solana Labs. These API endp
 
 ### Solana Program
 
-Build and deploy a simple Rust memo program to the Solana Devnet cluster.  
+When submitting to the mainnet-beta endpoint, target the preexisting Solana Memo Program (see Configuration section).
+
+For use with Devnet or Testnet, you can build a simple Rust memo program and deploy it to the respective Solana cluster.  
+Most robust method: compile the Rust program down to Berkeley Packet Filter byte code and then deploy as a smart contract using the Solana CLI tool (which breaks the code into chunks and submits it as a series of rapid fire transactions).  
+See [Solana CLI](https://docs.solanalabs.com/cli/install) and [Program](https://solana.com/docs/programs/overview) documentation for details.  
 Reference code for `lib.rs` and `Cargo.toml` files can found in /docs/solana_memo_program.  
-Add the `SOLANA_MEMO_PROGRAM_ID` to your `.env` file.  
+
+Once deployed, add the returned `SOLANA_MEMO_PROGRAM_ID` to your `.env` file.  
 <br>
 
 ## Configuration  
 
 ### Allowed Numbers
+`allowed_numbers.json` consists of the single field &nbsp; &nbsp; &nbsp;allowed_numbers: number[ ]  
+This is an array of the end user phone numbers authorized to use this app.  
+The same framework can be extended to manage per-number usage balances and more specific permission settings.
+
+- Numbers must follow the [E.164 Format](https://en.wikipedia.org/wiki/E.164) (for all Vonage API interfaces), omitting the leading + or 0s in international access codes along with any other special characters. For example, a US number would have the format 14155550101. A UK number would have the format 447700900123. See this [Vonage guide](https://developer.vonage.com/en/voice/voice-api/concepts/numbers) for details. 
+- Flag: As is, permissions are checked only at incoming SMS stages. Successful Vonage Silent Authentication and Solana registration procedures both cost tokens and can currently be initiated without permissions checking. Amend as needed.
+
+#### Join Procedure
+Select an admin phone number to authorize join requests and add this `APPROVAL_NUMBER` to your `.env` file.  
+The admin number does not need to be in a Silent Authentication Territory. 
 
 ### Environment Variables
 All other project configurations currently exist as environment variables.  
@@ -88,6 +103,7 @@ In solana.js
 You can use the Memo Program already deployed to and maintained on the Solana Mainnet.  
 The Program ID for this program is provided in `.env_template`. As the application is currently written, the string including the logged memo will still be the second element of the txResponse.meta.logMessages array in the solana.js solanaCheck function (same as for the Devnet program). If this is not the case, modify the assignment of tx_memo in this same function.  
 See Solana program library documentation for information about the mainnet [Memo Program](https://spl.solana.com/memo)  
+<br>
 
 ## Running the Application
 After cloning the repo, run the npm command from the project root directory to install the dependencies listed in the package.json file:  
