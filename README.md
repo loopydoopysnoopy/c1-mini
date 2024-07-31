@@ -12,10 +12,13 @@ Ensure you have the following installed:
 - [Node.js](https://nodejs.org/) (LTS version 20.x or later)
 - [npm](https://www.npmjs.com/) (comes with Node.js)
 
+### Application Server Exposure
+
+- Create a free ngrok account
+
 ### Vonage Developer Requirements
-This application uses the Vonage [Communications API Platform](https://www.vonage.com/communications-apis/apis/) for messaging and subscriber phone number verification.  
-Settings can be easily configured and inspected using either the [developer portal](https://dashboard.nexmo.com) or the [Vonage CLI](https://github.com/Vonage/vonage-cli/) tools.   
-Consult the API Reference documentation for the [Verify V2 API](https://developer.vonage.com/en/api/verify.v2) and [Messages API](https://developer.vonage.com/en/api/messages) as needed.
+This application uses the Vonage [Communications API Platform](https://www.vonage.com/communications-apis/apis/) for messaging and subscriber phone number verification. Settings can be easily configured and inspected using either the developer [portal](https://dashboard.nexmo.com) or the [Vonage CLI](https://github.com/Vonage/vonage-cli/) tools.   
+Consult the API Reference documentation for the [Verify V2](https://developer.vonage.com/en/api/verify.v2) and [Messages](https://developer.vonage.com/en/api/messages) APIs as needed.
 
 #### Vonage Developer Account 
 - Create a free account using the Vonage Developer Portal
@@ -25,7 +28,7 @@ Consult the API Reference documentation for the [Verify V2 API](https://develope
 - Add the `VONAGE_API_KEY` and `VONAGE_API_SECRET` values from the dashboard to your `.env`
   
 #### Vonage Phone Number 
-You will need to 
+You will need to rent a Vonage number in order to send and receive messages from your application. 
 
 #### Vonage Application 
 
@@ -46,7 +49,7 @@ This project uses the public RPC endpoints hosted by Solana Labs. These API endp
 
 ### Solana Program
 
-When submitting to the mainnet-beta endpoint, target the preexisting Solana Memo Program (see Configuration section).
+When using the mainnet-beta endpoint, target the preexisting Solana Memo Program (see Configuration section).
 
 For use with Devnet or Testnet, you can build a simple Rust memo program and deploy it to the respective Solana cluster. The most robust method is to compile the Rust program down to Berkeley Packet Filter byte code and then deploy it as a smart contract using the Solana CLI tool (which breaks the code into chunks and submits it as a series of rapid fire transactions).  
 See [Solana CLI](https://docs.solanalabs.com/cli/install) and [Program](https://solana.com/docs/programs/overview) documentation for details.  
@@ -146,4 +149,13 @@ $ nrgok http -domain=<YOUR_STATIC_DOMAIN_URL> 3000
 | buffer | The [buffer](https://nodejs.org/api/buffer.html) module handles binary data and is used to convert memos into Solana transaction instructions |
 | @vonage/jwt | We use the the [Vonage Node JWT library](https://www.npmjs.com/package/@vonage/jwt) to create JWT Tokens for easy auth of Vonage credentials |
 | @solana/web3.js | The [Solana Javascript SDK](https://solana-labs.github.io/solana-web3.js/index.html) lets us interact with accounts and programs through the Solana [RPC JSON API](https://solana.com/docs/rpc)  |
+<br>
+
+## Using the Application
+
+### Requirements
+
+### Sample End-to-end Workflow
+
+### Additional Notes
 
