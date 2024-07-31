@@ -68,6 +68,9 @@ This is an array of the end user phone numbers authorized to use this app. The s
 Identify an admin phone number to authorize join requests and add this `APPROVAL_NUMBER` to your `.env` file.  
 The admin number does not need to be in a Silent Authentication Territory. 
 
+- See `messages.js` and demo video for Join procedure details and expected message formats
+- Newly approved numbers are pushed to both the current allowed_numbers variable and the JSON to retain permissions when the app restarts
+  
 ### Environment Variables
 All other project configurations currently exist as environment variables.  
 Some Solana network settings are already populated in the .env_template file.
