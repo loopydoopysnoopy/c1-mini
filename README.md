@@ -14,7 +14,12 @@ Ensure you have the following installed:
 
 ### Application Server Exposure
 
-- Create a free ngrok account
+
+[ngrok](https://ngrok.com)
+- Create a free ngrok account and install to your local machine
+- Creating a static domain is recommended (though not required). Accounts can get one static domain for free.
+- Assign the static domain url to `SERVER_BASE_URL` in `.env` ( Note: if you decide to use ephemeral domains, you will receive a new url each time you start up an ngrok tunnel and must update the `.env` accordingly )
+
 
 ### Vonage Developer Requirements
 This application uses the Vonage [Communications API Platform](https://www.vonage.com/communications-apis/apis/) for messaging and subscriber phone number verification. Settings can be easily configured and inspected using either the developer [portal](https://dashboard.nexmo.com) or the [Vonage CLI](https://github.com/Vonage/vonage-cli/) tools.   
@@ -32,9 +37,9 @@ You will need to rent a Vonage number in order to send and receive messages from
 
 #### Vonage Application 
 
-#### Vonage Brand Name
+- Create a new application from Dashboard > Applications
 
-### Application Server Exposure  
+#### Vonage Brand Name 
 
 ### Solana Wallet
 - Create a Solana Wallet using a method that gives direct access to the private key
