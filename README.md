@@ -36,18 +36,31 @@ Consult the API Reference documentation for the [Verify V2](https://developer.vo
 You will need to rent a Vonage number in order to send and receive messages from your application. 
 
 #### Vonage Application 
+Vonage Applications (not to be confused with the nodeJS web app) act at containers for security and configuration information that define how your backend interacts with Vonage APIs. They store the credentials and endpoint URLs necessary to support messaging and subscriber authentication capabilities. 
+
 
 - Create a new application from Dashboard > Applications
 
 #### Vonage Brand Name 
 
 ### Solana Wallet
-- Create a Solana Wallet using a method that gives direct access to the private key
-   - (ALISHA: Add note about JSON and expected array format)
-   - (ALISHA: Add note about phantom)
+
+- Create a Solana Wallet using a method that gives explicit access to the private key (not all methods will provide this)
+   - See Solana docs to create a [Command Line Wallet](https://docs.solanalabs.com/cli/wallets) with the CLI or explore other [compatible tools](https://solana.com/docs/intro/wallets#supported-wallets)
+   - [Phantom](https://phantom.app/) offers desktop and browser-based wallet tools with private key access
+- Save the private key file to your project's /permissions directory
+   - This project expects a JSON file containing a single array of 64 unsigned integers, representing the private key in Uint8Array form
+   - If your wallet tool gives you a base58 private key (as with Phantom), use the provided scripts/solana-key-conversion.js file to convert and save it in the correct format. Replace the key and filename values in the script and run the following commands from your project's root directory : 
+   ```shell
+npm install bs58
+node scripts/solana-key-conversion.js
+```
+- Assign ./permissions/<file_name>.json to `SONALA_KEY_PATH` in your `.env`
+   
+#### Adding Tokens to Wallet
 - Devnet tokens are not real SOL. You can request a token airdrop to your wallet address using the Solana CLI or sources such as the [Solana Faucet](https://faucet.solana.com)
-- Submitting transactions to the mainnet-beta endpoint requires the purchase of real SOL tokens.
-- It may be helpful to maintain two separate wallets and security levels for your real and fake tokens. 
+- Submitting transactions to the mainnet-beta endpoint requires the purchase of real SOL tokens
+- It may be helpful to maintain two separate wallets and security levels for your real and fake tokens 
 
 #### Additional Solana Client Notes
 This project uses the public RPC endpoints hosted by Solana Labs. These API endpoints are meant for experimental use cases only and are subject to rate limits. For higher rates and production application usage, you should host a private RPC endpoint. Please see the Solana documentation for more details: [Clusters and Public RPC Endpoints](https://solana.com/docs/core/clusters)
@@ -125,23 +138,27 @@ See Solana program library documentation for information about the mainnet [Memo
 <br>
 
 ## Running the Application
-After cloning the repo, run the npm command from the project root directory to install the dependencies listed in the package.json file:  
+After cloning the repo, run the npm command from the project root directory to install the dependencies listed in the package.json file :  
 ```shell
-$ npm install
+npm install
 ```
 
 ( Note: the package.json file also includes the line  "type" : "module" because this app uses [ES6 modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) rather than [Common JS](https://nodejs.org/api/modules.html) )
 
-Run the application using the NodeJS command from the project root directory:
+Run the application using the NodeJS command from the project root directory :
 ```shell
-$ node src/app.js
+node src/app.js
 ```
 By default, your app will listen for incoming HTTP requests on port 3000. This can be modified within the app.js file.  
 
-If necessary, establish an ngrok tunnel routing incoming requests to this same port:
+For local deployments, establish an ngrok tunnel routing incoming requests to this same port :
 ```shell
-$ nrgok http -domain=<YOUR_STATIC_DOMAIN_URL> 3000
+nrgok http -domain=<YOUR_STATIC_DOMAIN_URL> 3000
 ```
+The console will display information about the connection and a running log of HTTP requests. 
+
+
+(ADD: Open a new/separate terminal window and establish ngrok tunnel ... window will show log of http requests)
 
 ### Dependencies
 | Package | Description |
@@ -157,10 +174,28 @@ $ nrgok http -domain=<YOUR_STATIC_DOMAIN_URL> 3000
 <br>
 
 ## Using the Application
+[Silent Authentication Territories](https://developer.vonage.com/en/verify/guides/silent-auth-territories)
+[SDKs](https://developer.vonage.com/en/tools)
+
+(ADD: Brief summary of how end users interface with application. using any (SMS-capable)messaging and web-browser app on their mobile device )
 
 ### Requirements
+- (ADD: Must be in a vonage silent auth territory - link - currently only available for select countries and carriers )
+- (ADD: Silent authetication must be initiated over cellular connection or will return error. For purposes of this app, can simply have end users turn off WiFi. For more advanced usage, incorporate vonage mobile SDKs to force cellular connection -link - )
 
 ### Sample End-to-end Workflow
+(ADD: Brief summary of the e2e process the demo illustrates -link to demo vid-)
+
+(ADD: Uses ProofMode -link- to capture (or import) photo and calculate the SHA 256 hash; can optionally be used to add additional phone sensor metadate to the bundle. Explain proofmode guardian project briefly)
+(ADD: Scenario illustrated captures newspaper. Poetic upper and lower bound using both classical journalism and novel cryptographic methods)
+
+(ADD: Demo video breaks down process into four steps)
+- (ADD: 1 JOIN - descrip)
+- (ADD: 2 REGISTER - descrip)
+- (ADD: 3 SHARE - descrip)
+- (ADD: 4 VERIFY - descrip)
 
 ### Additional Notes
 
+- (ADD: Android proofmode has "proofmode basic" export share feature for user to populate an sms with the hash, date modified stamp, and signature )
+- (ADD: The cuurent public release of proofmode on ios does not have this feature (nor the ability to select the sha 256 hash as text). The OCR Live Text approach shown in this demo was employed ONLY for illustrative purposes  (in order to showcase method with capabilities in current proofmode ios public release ). This is NOT a reliable method of capturing the hash characters. 
