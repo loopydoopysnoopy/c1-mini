@@ -20,7 +20,7 @@ To receive Vonage API notifications and user authentication requests, your appli
 This application uses the Vonage [Communications API Platform](https://www.vonage.com/communications-apis/apis/) for messaging and subscriber phone number verification. Settings can be easily configured and inspected using either the developer [portal](https://dashboard.nexmo.com) or the [Vonage CLI](https://github.com/Vonage/vonage-cli/) tools.   
 Consult the API Reference documentation for the [Verify V2](https://developer.vonage.com/en/api/verify.v2) and [Messages](https://developer.vonage.com/en/api/messages) APIs as needed.
 
-(ADD: Note: Phone number representations must follow the E.164 format. See [Vonage guide](https://developer.vonage.com/en/voice/voice-api/concepts/numbers) for details)
+Phone number representations must follow the E.164 format. See [Vonage guide](https://developer.vonage.com/en/voice/voice-api/concepts/numbers) for details.
 
 #### Vonage Developer Account 
 - Create a free account using the Vonage Developer Portal
@@ -31,7 +31,9 @@ Consult the API Reference documentation for the [Verify V2](https://developer.vo
   
 #### Vonage Phone Number and Brand Name
 
-You will need to rent a virtual number from Vonage in order to send and receive messages from your application server. This can be done directly from the Developer Portal. If operating in the US or Canada, you should first review messaging options and the new 10DLC (ten digit long code) standards. Operations in the US and Canada should review the new [10DLC](https://developer.vonage.com/en/10-dlc/10-dlc-registration-dashboard?source=10-dlc) (ten digit long code) regulations and messaging [options](https://api.support.vonage.com/hc/en-us/articles/360050905592-A2P-Messaging-Options-in-the-U-S-and-Canada). All Application to Person (A2P) messages sent to U.S. subscribers must originate from a phone number that can be traced back to a single legal entity. This includes Toll-Free Numbers (TFN) and Short Codes (SC). 10DLC numbers must be associated with a registered "brand" can campaign name as well. Toll-Free Numbers (TFNs) should be ["verified"](https://api.support.vonage.com/hc/en-us/articles/360055483251-Verified-Toll-Free-Numbers-US-and-Canada-TFNs) to ensure SMS and MMS message delivery, even for testing purposes. TFNs that have not been "verified" will have their messages blocked. 
+You will need to rent a virtual number from Vonage in order to send and receive messages from your application server. This can be done directly from the Developer Portal. If operating in the US or Canada, you should first review messaging [options](https://api.support.vonage.com/hc/en-us/articles/360050905592-A2P-Messaging-Options-in-the-U-S-and-Canada) and the new [10DLC](https://developer.vonage.com/en/10-dlc/10-dlc-registration-dashboard?source=10-dlc) policies. 
+
+All Application to Person (A2P) messages sent to U.S. subscribers must originate from a phone number that can be traced back to a single legal entity. This includes Toll-Free Numbers (TFN) and Short Codes (SC). 10DLC numbers must be associated with a registered "brand" can campaign name as well. Toll-Free Numbers (TFNs) should be "[verified](https://api.support.vonage.com/hc/en-us/articles/360055483251-Verified-Toll-Free-Numbers-US-and-Canada-TFNs)" to ensure SMS and MMS message delivery, even for testing purposes. TFNs that have not been "verified" will have their messages blocked. 
 
 Assign these values as `VONAGE_FROM_NUMBER` and `VONAGE_BRAND_NAME` in your `.env`
 
@@ -57,9 +59,9 @@ Note : Ensure that your webserver is running before messages are sent to the lin
    - This project expects a JSON file containing a single array of 64 unsigned integers, representing the private key in Uint8Array form
    - If your wallet tool gives you a base58 private key (as with Phantom), use the provided scripts/solana-key-conversion.js file to convert and save it in the correct format. Replace the key and filename values in the script and run the following commands from your project's root directory : 
    ```shell
-npm install bs58
-node scripts/solana-key-conversion.js
-```
+   npm install bs58
+   node scripts/solana-key-conversion.js
+   ```
 - Assign ./permissions/<file_name>.json to `SONALA_KEY_PATH` in your `.env`
    
 #### Adding Tokens to Wallet
@@ -158,7 +160,7 @@ By default, your app will listen for incoming HTTP requests on port 3000. This c
 
 For local deployments, establish an ngrok tunnel routing incoming requests to this same port :
 ```shell
-nrgok http -domain=<YOUR_STATIC_DOMAIN_URL> 3000
+ngrok http -domain=<YOUR_STATIC_DOMAIN_URL> 3000
 ```
 The console will display information about the connection and a running log of HTTP requests. 
 
