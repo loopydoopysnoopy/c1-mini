@@ -1,29 +1,26 @@
 # c1-mini
 
-⚠️ STILL IN DEVELOPMENT ⚠️  
-Further documentation and instructions coming soon
-
 C1-Mini is an application to interface with end users using A2P SMS, perform silent authentication of Subscribers from their mobile web browser, register user SMS memos to the Solana blockchain, and then use transaction data to verify data authenticity.
 
 ## Prerequisites  
 
 ### NodeJS  
-Ensure you have the following installed:
+Ensure you have the following installed :
 - [Node.js](https://nodejs.org/) (LTS version 20.x or later)
 - [npm](https://www.npmjs.com/) (comes with Node.js)
 
 ### Application Server Exposure
-
-
-[ngrok](https://ngrok.com)
-- Create a free ngrok account and install to your local machine
-- Creating a static domain is recommended (though not required). Accounts can get one static domain for free.
+To receive Vonage API notifications and user authentication requests, your applicaton must be reachable over the public internet. For local development and testing, [ngrok](https://ngrok.com) is a convenient tool that establishes a secure tunnel to your machine and serves your app using an HTTPS endpoint.
+- Create a free ngrok account and install the tool
+- Create a static domain (recommended, but not required). Accounts can get one static domain for free.
 - Assign the static domain url to `SERVER_BASE_URL` in `.env` ( Note: if you decide to use ephemeral domains, you will receive a new url each time you start up an ngrok tunnel and must update the `.env` accordingly )
 
 
 ### Vonage Developer Requirements
 This application uses the Vonage [Communications API Platform](https://www.vonage.com/communications-apis/apis/) for messaging and subscriber phone number verification. Settings can be easily configured and inspected using either the developer [portal](https://dashboard.nexmo.com) or the [Vonage CLI](https://github.com/Vonage/vonage-cli/) tools.   
 Consult the API Reference documentation for the [Verify V2](https://developer.vonage.com/en/api/verify.v2) and [Messages](https://developer.vonage.com/en/api/messages) APIs as needed.
+
+(ADD: Note: Phone number representations must follow the E.164 format. See [Vonage guide](https://developer.vonage.com/en/voice/voice-api/concepts/numbers) for details)
 
 #### Vonage Developer Account 
 - Create a free account using the Vonage Developer Portal
@@ -32,16 +29,24 @@ Consult the API Reference documentation for the [Verify V2](https://developer.vo
  Vonage has two different APIs capable of sending and receiving SMS. You can only use one at a time because it will change the format of the webhooks you receive. This application uses the Messages API to handle SMS.  
 - Add the `VONAGE_API_KEY` and `VONAGE_API_SECRET` values from the dashboard to your `.env`
   
-#### Vonage Phone Number 
-You will need to rent a Vonage number in order to send and receive messages from your application. 
+#### Vonage Phone Number and Brand Name
+
+You will need to rent a virtual number from Vonage in order to send and receive messages from your application server. This can be done directly from the Developer Portal. If operating in the US or Canada, you should first review messaging options and the new 10DLC (ten digit long code) standards. Operations in the US and Canada should review the new [10DLC](https://developer.vonage.com/en/10-dlc/10-dlc-registration-dashboard?source=10-dlc) (ten digit long code) regulations and messaging [options](https://api.support.vonage.com/hc/en-us/articles/360050905592-A2P-Messaging-Options-in-the-U-S-and-Canada). All Application to Person (A2P) messages sent to U.S. subscribers must originate from a phone number that can be traced back to a single legal entity. This includes Toll-Free Numbers (TFN) and Short Codes (SC). 10DLC numbers must be associated with a registered "brand" can campaign name as well. Toll-Free Numbers (TFNs) should be ["verified"](https://api.support.vonage.com/hc/en-us/articles/360055483251-Verified-Toll-Free-Numbers-US-and-Canada-TFNs) to ensure SMS and MMS message delivery, even for testing purposes. TFNs that have not been "verified" will have their messages blocked. 
+
+Assign these values as `VONAGE_FROM_NUMBER` and `VONAGE_BRAND_NAME` in your `.env`
 
 #### Vonage Application 
 Vonage Applications (not to be confused with the nodeJS web app) act at containers for security and configuration information that define how your backend interacts with Vonage APIs. They store the credentials and endpoint URLs necessary to support messaging and subscriber authentication capabilities. 
 
+- Create a new Vonage Application from Dashboard > Applications. Note the application ID and assign it to `VONAGE_APPLICATION_ID` in your `.env`.
+- Select "Generate public and private key" to populate the application credentials. Save the automatically downloaded private key file to your project's /permissions directory, and assign `VONAGE_PRIVATE_KEY_PATH` as ./permissions/<file_name>.key in your `.env`.
 
-- Create a new application from Dashboard > Applications
+This app exposes three distinct webhooks to handle incoming HTTP requests from the Vonage APIs — two for Messages and one for VerifyV2. These endpoints must be configured in your Vonage Application in order to receive inbound messages and status updates.
+- Under "Capabilities", enable the Messages and VerifyV2 APIs
+- Configure the API endpoints by appending the following paths to your assigned `SERVER_BASE_URL`: /messageStatus, /incomingMessage, and /verifyStatus. (Example: `https://abcdef1.ngrok.io/messageStatus`). If you are not using a static ngrok domain, these URLs must be updated each time a new tunnel is started. 
+- Select "Generate Application" and then link it to your virtual number in the Vonage Application's settings. Inbound messages sent to this number will now be forwarded to the webhook specified above.
 
-#### Vonage Brand Name 
+Note : Ensure that your webserver is running before messages are sent to the linked number. At minimum, your webhook handlers should return 200 responses for both Inbound Message and Message Status callbacks to avoid retried and potential callback queuing issues.
 
 ### Solana Wallet
 
