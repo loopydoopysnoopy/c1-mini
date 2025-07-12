@@ -138,23 +138,23 @@ Some Solana network settings are already populated in the .env_template file.
 
 Create a `.env` file in the root of your project and add the following environment variables :
 
-- `VONAGE_API_KEY` : API Key associated with your Vonage Developer account. See Developer Portal Dashboard. 
-- `VONAGE_API_SECRET` : API Secret associated with your Vonage Developer account. See Developer Portal Dashboard. 
-- `VONAGE_APPLICATION_ID` : ID of the Vonage Application created with your developer account. 
-- `VONAGE_PRIVATE_KEY_PATH` : Path to the private key file associated with your Vonage Application
-- `VONAGE_FROM_NUMBER` : Phone number rented from Vonage and linked to your Application in the Developer Portal.
-- `VONAGE_BRAND_NAME` : Vonage Brand Name configured in the Developer Portal.<br><br>
-- `APPROVAL_NUMBER` : Admin phone number that will recieve and approve new user JOIN requests. 
-- `ALLOWED_NUMBERS_PATH` : Path to your allowed_numbers.json file. 
-- `SERVER_BASE_URL` : URL of your Application Server HTTPS endpoint. Individual routes will be appended to this.<br><br>
-- `SOLANA_KEY_PATH` : Path to the private key file associated with your default Solana account.
-- `SOLANA_MEMO_PROGRAM_ID` : Program ID of the memo program that you build and deploy to the Solana devnet cluster. 
-- `SOLANA_CONNECTION_URL` : Default API endpoint for your Solana client. `.env_template` uses the public devnet RPC endpoint.
-- `EXPLORE_URL_QUERY` : Query that must be appended to the Solana explorer URL for devnet transaction lookup.<br><br>
-- `MAIN_SOLANA_KEY_PATH` : Path to the private key file associated with your mainnet Solana account.
-- `MAIN_SOLANA_MEMO_PROGRAM_ID` : `.env_template` lists the ID for the Memo Program deployed on Solana mainnet. See notes below.
-- `MAIN_SOLANA_CONNECTION_URL` : API endpoint for Solana mainnet client. `.env_template` uses the public mainnet-beta RPC endpoint.
-- `MAIN_EXPLORE_URL_QUERY` : This value is deliberately an empty string in `.env_template.` Default explorer URL goes to mainnet.  
+- `VONAGE_API_KEY` : API Key for your Vonage Developer account. See the Developer Portal Dashboard. 
+- `VONAGE_API_SECRET` : API Secret for your Vonage Developer account. See the Developer Portal Dashboard. 
+- `VONAGE_APPLICATION_ID` : ID of the Vonage Application created with your developer account 
+- `VONAGE_PRIVATE_KEY_PATH` : Path to the private key file for your Vonage Application
+- `VONAGE_FROM_NUMBER` : Rented Vonage number linked to your Application in the Developer Portal
+- `VONAGE_BRAND_NAME` : Vonage Brand Name configured in the Developer Portal<br><br>
+- `APPROVAL_NUMBER` : Admin phone number that will recieve and approve new user JOIN requests 
+- `ALLOWED_NUMBERS_PATH` : Path to your allowed_numbers.json file 
+- `SERVER_BASE_URL` : HTTPS endpoint for your Application Server. Individual paths are appended to this.<br><br>
+- `SOLANA_KEY_PATH` : Path to the private key file for your default Solana account
+- `SOLANA_MEMO_PROGRAM_ID` :  ID of the memo program built and deployed to the Solana devnet cluster
+- `SOLANA_CONNECTION_URL` : Default endpoint for your Solana client. `.env_template` uses the public devnet RPC.
+- `EXPLORE_URL_QUERY` : Query string appended to the Solana Explorer URL for devnet transaction lookup<br><br>
+- `MAIN_SOLANA_KEY_PATH` : Path to the private key file for your mainnet Solana account
+- `MAIN_SOLANA_MEMO_PROGRAM_ID` : ID for the Memo Program on Solana mainnet. See notes below.
+- `MAIN_SOLANA_CONNECTION_URL` : Solana mainnet endpoint. `.env_template` uses the public mainnet-beta RPC.
+- `MAIN_EXPLORE_URL_QUERY` : Deliberate empty string in `.env_template.` Default URL goes to mainnet.  
 
 ### Using the Project with Solana Mainnet
 Solana Mainnet configuration should be used for actual project deployments (vs. demos) or as a backup if the Devnet cluster is down. The Devnet cluster may be subject to ledger resets. Mainnet-beta is a permissionless, persistent cluster for Solana users, builders, validators and token holders. Mainnet-beta transactions require a balance of real SOL tokens.  
