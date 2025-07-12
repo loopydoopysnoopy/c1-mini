@@ -2,6 +2,39 @@
 
 C1-Mini is an application to interface with end users using A2P SMS, perform silent authentication of Subscribers from their mobile web browser, register user SMS memos to the Solana blockchain, and then use transaction data to verify data authenticity.
 
+<details>
+<summary><strong>📚 Table of Contents</strong></summary>
+
+- [Prerequisites](#prerequisites)
+  - [NodeJS](#nodejs)
+  - [Application Server Exposure](#application-server-exposure)
+  - [Vonage Developer Requirements](#vonage-developer-requirements)
+    - [Vonage Developer Account](#vonage-developer-account)
+    - [Vonage Phone Number and Brand Name](#vonage-phone-number-and-brand-name)
+    - [Vonage Application](#vonage-application)
+  - [Solana Wallet](#solana-wallet)
+    - [Adding Tokens to Wallet](#adding-tokens-to-wallet)
+    - [Additional Solana Client Notes](#additional-solana-client-notes)
+  - [Solana Program](#solana-program)
+
+- [Configuration](#configuration)
+  - [Allowed Numbers](#allowed-numbers)
+    - [Approving New Users](#approving-new-users)
+  - [Environment Variables](#environment-variables)
+  - [Using the Project with Solana Mainnet](#using-the-project-with-solana-mainnet)
+
+- [Running the Application](#running-the-application)
+  - [Dependencies](#dependencies)
+
+- [Using the Application](#using-the-application)
+  - [Requirements](#requirements)
+  - [Sample End-to-end Workflow](#sample-end-to-end-workflow)
+  - [Additional Notes](#additional-notes)
+
+</details>
+
+
+
 ## Prerequisites  
 
 ### NodeJS  
@@ -56,12 +89,12 @@ Note : Ensure that your webserver is running before messages are sent to the lin
    - [Phantom](https://phantom.app/) offers desktop and browser-based wallet tools with direct private key access
 - Save the private key file to your project's /permissions directory
    - This project expects a JSON file containing a single array of 64 unsigned integers, representing the private key in Uint8Array form
-   - If your wallet tool gives you a base58 private key (as with Phantom), use the provided scripts/solana-key-conversion.js file to convert and save it in the correct format. Replace the key and filename values in the script and run the following commands from your project's root directory : 
+   - If your wallet tool gives you a base58 private key (as with Phantom), use the provided scripts/solana-key-conversion.js file to convert and save it in the correct format. Replace the key and filename values in the script and run the following commands from your project's root directory : <br>
    
-    ```shell
-    npm install bs58
-    node scripts/solana-key-conversion.js
-    ```
+     ```shell
+     npm install bs58
+     node scripts/solana-key-conversion.js
+     ```
 - Assign ./permissions/<filename>.json to `SOLANA_KEY_PATH` in your `.env`
    
 #### Adding Tokens to Wallet
@@ -198,18 +231,18 @@ In this demo scenario, there are two independent end users of the server applica
 
 The workflow is depicted in four stages : 
 
-1. **JOIN**
-The Capturer (mobile user) makes an admin request (via an SMS to the A2P number associated with the Vonage Application developer account) for approval to use the registration service. Once approved, the user is notified that all subsequent SMS texts will be interpreted as payloads to be registered. 
+1. **JOIN**<br>
+The Capturer (mobile user) makes an admin request (via an SMS to the A2P number associated with the Vonage Application developer account) for approval to use the registration service. Once approved, the user is notified that all subsequent SMS texts will be interpreted as payloads to be registered.
 
-2. **REGISTER**
+2. **REGISTER**<br>
 Proofmode iOS allows the Capturer to select a photo and explore its associated metadata. Using iOS screenshot and Live Text OCR, the user selects the file's SHA-256 hash and last-modified timestamp, then pastes this information into an SMS. Once the server receives the SMS, the user is prompted to initiate the Silent Authentication procedure in their mobile web browser.
 
     If authentication is successful, the server submits a Solana transaction embedding the SMS payload in the memo field. Solana returns a transaction signature, which is formatted as a Solana Explorer link and sent back to the Capturer via SMS. The user can follow this link in their web browser to inspect the transaction and independently confirm that the file hash was successfully registered (rather than simply trusting the server).
-
-3. **SHARE**
+   
+3. **SHARE**<br>
 The Capturer sends the image file to the Verifier along with the transaction signature for its Solana registration. This can happen at any point later in time, via any method of communication. For simplicity, this demo uses the Proofmode Capture export option to email the entire zipped Proofmode bundle (which includes the image file, metadata, and signatures) to the Verifier. However, only the image file itself is strictly necessary. The Capturer also points the Verifier to the application server's Verify Portal accessible at `SERVER_BASE_URL`/verify. 
 
-4. **VERIFY**
+4. **VERIFY**<br>
 The Verifier downloads the Proofmode bundle, navigates to the Verify Portal, and pastes the transaction signature to query on the Solana blockchain. The Verifier then locates the image file within the Proofmode bundle and calculates its SHA-256 hash on their local machine. The result is copied into the Verify Portal for comparison. 
 
     Since the file hash is found in the transaction memo, the Portal confirms successful registration and reports the associated timestamp. It also compares the blockchain registration timestamp with the file modification timestamp from the memo payload and displays the time delta (2 minutes) to demonstrate how quickly the image was anchored on-chain.
