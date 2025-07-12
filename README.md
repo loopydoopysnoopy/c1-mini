@@ -73,7 +73,7 @@ Assign these values as `VONAGE_FROM_NUMBER` and `VONAGE_BRAND_NAME` in your `.en
 Vonage Applications (not to be confused with the NodeJS server application) act as containers for security and configuration information that define how your backend interacts with Vonage APIs. They store the credentials and endpoint URLs necessary to support messaging and subscriber authentication capabilities. 
 
 - Create a new Vonage Application from Dashboard > Applications. Note the application ID and assign it to `VONAGE_APPLICATION_ID` in your `.env`.
-- Select "Generate public and private key" to populate the application credentials. Save the automatically downloaded private key file to your project's /permissions directory, and assign `VONAGE_PRIVATE_KEY_PATH` as ./permissions/<filename>.key in your `.env`.
+- Select "Generate public and private key" to populate the application credentials. Save the automatically downloaded private key file to your project's /permissions directory, and assign `VONAGE_PRIVATE_KEY_PATH` as ./permissions/<your_file_name>.key in your `.env`.
 
 This app exposes three distinct webhooks to handle incoming HTTP requests from the Vonage APIs — two for Messages and one for VerifyV2. These endpoints must be configured in your Vonage Application in order to receive inbound messages and status updates.
 - Under "Capabilities", enable the Messages and VerifyV2 APIs
@@ -96,7 +96,7 @@ Note : Ensure that your webserver is running before messages are sent to the lin
      npm install bs58
      node scripts/solana-key-conversion.js
      ```
-- Assign ./permissions/<filename>.json to `SOLANA_KEY_PATH` in your `.env`
+- Assign ./permissions/<your_file_name>.json to `SOLANA_KEY_PATH` in your `.env`
    
 #### Adding Tokens to Wallet
 - Devnet tokens are not real SOL. You can request a token airdrop to your wallet address using the Solana CLI or sources such as the [Solana Faucet](https://faucet.solana.com)
