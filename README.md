@@ -149,11 +149,11 @@ Create a `.env` file in the root of your project and add the following environme
 - `SERVER_BASE_URL` : HTTPS endpoint for your Application Server. Individual paths are appended to this.<br><br>
 - `SOLANA_KEY_PATH` : Path to the private key file for your default Solana account
 - `SOLANA_MEMO_PROGRAM_ID` :  ID of the memo program built and deployed to the Solana devnet cluster
-- `SOLANA_CONNECTION_URL` : Default endpoint for your Solana client. `.env_template` uses the public devnet RPC.
+- `SOLANA_CONNECTION_URL` : Default Solana RPC endpoint. `.env_template` uses the public devnet URL.
 - `EXPLORE_URL_QUERY` : Query string appended to the Solana Explorer URL for devnet transaction lookup<br><br>
 - `MAIN_SOLANA_KEY_PATH` : Path to the private key file for your mainnet Solana account
 - `MAIN_SOLANA_MEMO_PROGRAM_ID` : ID for the Memo Program on Solana mainnet. See notes below.
-- `MAIN_SOLANA_CONNECTION_URL` : Solana mainnet endpoint. `.env_template` uses the public mainnet-beta RPC.
+- `MAIN_SOLANA_CONNECTION_URL` : Solana mainnet RPC endpoint. `.env_template` uses the public mainnet-beta URL.
 - `MAIN_EXPLORE_URL_QUERY` : Deliberate empty string in `.env_template.` Default URL goes to mainnet.  
 
 ### Using the Project with Solana Mainnet
