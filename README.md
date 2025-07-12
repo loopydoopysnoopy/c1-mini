@@ -77,7 +77,8 @@ Vonage Applications (not to be confused with the NodeJS server application) act 
 
 This app exposes three distinct webhooks to handle incoming HTTP requests from the Vonage APIs — two for Messages and one for VerifyV2. These endpoints must be configured in your Vonage Application in order to receive inbound messages and status updates.
 - Under "Capabilities", enable the Messages and VerifyV2 APIs
-- Configure the API endpoints by appending the following paths to your assigned `SERVER_BASE_URL`: /messageStatus, /incomingMessage, and /verifyStatus. (Example: `https://abcdef1.ngrok.io/messageStatus`). If you are not using a static ngrok domain, these URLs must be updated each time a new tunnel is started. 
+- Configure the API endpoints by appending the following paths to your assigned `SERVER_BASE_URL`: /messageStatus, /incomingMessage, and /verifyStatus.
+  - (Example: `https://abcdef1.ngrok.io/messageStatus`). If you are not using a static ngrok domain, these URLs must be updated each time a new tunnel is started. 
 - Select "Generate Application" and then link it to your virtual number in the Vonage Application's settings. Inbound messages sent to this number will now be forwarded to the webhook specified above.
 
 Note : Ensure that your webserver is running before messages are sent to the linked number. At minimum, your webhook handlers should return 200 responses for both Inbound Message and Message Status callbacks to avoid Vonage API retrials and potential callback queuing issues.
@@ -153,7 +154,7 @@ Create a `.env` file in the root of your project and add the following environme
 - `EXPLORE_URL_QUERY` : Query string appended to the Solana Explorer URL for devnet transaction lookup<br><br>
 - `MAIN_SOLANA_KEY_PATH` : Path to the private key file for your mainnet Solana account
 - `MAIN_SOLANA_MEMO_PROGRAM_ID` : ID for the Memo Program on Solana mainnet. See notes below.
-- `MAIN_SOLANA_CONNECTION_URL` : Solana mainnet RPC endpoint. `.env_template` uses the public mainnet-beta URL.
+- `MAIN_SOLANA_CONNECTION_URL` : Mainnet RPC endpoint. `.env_template` uses the public mainnet-beta URL.
 - `MAIN_EXPLORE_URL_QUERY` : Deliberate empty string in `.env_template.` Default URL goes to mainnet.  
 
 ### Using the Project with Solana Mainnet
