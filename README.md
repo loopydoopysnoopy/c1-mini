@@ -43,7 +43,7 @@ Ensure you have the following installed :
 - [npm](https://www.npmjs.com/) (comes with Node.js)
 
 ### Application Server Exposure
-To receive Vonage API notifications and user authentication requests, your applicaton must be reachable over the public internet. For local development and testing, [ngrok](https://ngrok.com) is a convenient tool that establishes a secure tunnel to your machine and serves your app using an HTTPS endpoint.
+To receive Vonage API notifications and user authentication requests, your application must be reachable over the public internet. For local development and testing, [ngrok](https://ngrok.com) is a convenient tool that establishes a secure tunnel to your machine and serves your app using an HTTPS endpoint.
 - Create a free ngrok account and install the tool
 - Create a static domain (recommended, but not required). Accounts can get one static domain for free.
 - Assign the static domain URL to `SERVER_BASE_URL` in `.env` ( Note: if you decide to use ephemeral domains, you will receive a new URL each time you start up an ngrok tunnel and must update the `.env` accordingly )
