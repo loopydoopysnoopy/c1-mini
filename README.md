@@ -204,7 +204,7 @@ The console will display information about the connection and a running log of H
 | express | This project uses the [ExpressJS](https://expressjs.com) web and mobile application framework |
 | cookie-parser | [cookie-parser](https://github.com/expressjs/cookie-parser) is an ExpressJS middleware module that can be used for session management or debugging |
 | ejs | Embedded Javascript ([ejs](https://ejs.co)) is a simple and powerful HTML template engine for dynamic rendering with NodeJS |
-| axios | [axois](https://axios-http.com/docs/intro) is a promised-based client for NodeJS to make HTTP calls from our backend to the APIs |
+| axios | [axios](https://axios-http.com/docs/intro) is a promised-based client for NodeJS to make HTTP calls from our backend to the APIs |
 | dotenv | [dotenv](https://www.dotenv.org) is used to read in the environment variables from `.env` |
 | buffer | The [buffer](https://nodejs.org/api/buffer.html) module handles binary data and is used to convert memos into Solana transaction instructions |
 | @vonage/jwt | We use the the [Vonage Node JWT library](https://www.npmjs.com/package/@vonage/jwt) to create JWT Tokens for easy auth of Vonage credentials |
@@ -215,7 +215,7 @@ The console will display information about the connection and a running log of H
 
 Once running, this application allows a mobile phone user to establish an immediate, tamper-evident, publicly-verifiable Proof of Existence (PoE) for files captured on their device. This implementation offers maximum interoperability and does not require users to install any particular mobile application. Instead, the authentication and registration procedures are accomplished using a combination of : 
 - Any standard mobile web browser
-- Any messenging app with native support for SMS and MMS
+- Any messaging app with native support for SMS and MMS
 - Any application capable of computing a cryptographic hash of a file (e.g., using SHA-256)
 
 ### Requirements
