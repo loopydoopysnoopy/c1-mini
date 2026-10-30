@@ -77,7 +77,7 @@ Vonage Applications (not to be confused with the NodeJS server application) act 
 
 This app exposes three distinct webhooks to handle incoming HTTP requests from the Vonage APIs — two for Messages and one for VerifyV2. These endpoints must be configured in your Vonage Application in order to receive inbound messages and status updates.
 - Under "Capabilities", enable the Messages and VerifyV2 APIs
-- Configure the API endpoints by appending the following paths to your assigned `SERVER_BASE_URL`: /messageStatus, /incomingMessage, and /verifyStatus.
+- Configure the API endpoints by appending the following paths to your assigned `SERVER_BASE_URL`: /messageStatus, /inboundMessage, and /verifyStatus.
   - (Example: `https://abcdef1.ngrok.io/messageStatus`). If you are not using a static ngrok domain, these URLs must be updated each time a new tunnel is started. 
 - Select "Generate Application" and then link it to your virtual number in the Vonage Application's settings. Inbound messages sent to this number will now be forwarded to the webhook specified above.
 
@@ -241,7 +241,7 @@ Proofmode iOS allows the Capturer to select a photo and explore its associated m
     If authentication is successful, the server submits a Solana transaction embedding the SMS payload in the memo field. Solana returns a transaction signature, which is formatted as a Solana Explorer link and sent back to the Capturer via SMS. The user can follow this link in their web browser to inspect the transaction and independently confirm that the file hash was successfully registered (rather than simply trusting the server).
    
 3. **SHARE**<br>
-The Capturer sends the image file to the Verifier along with the transaction signature for its Solana registration. This can happen at any point later in time, via any method of communication. For simplicity, this demo uses the Proofmode Capture export option to email the entire zipped Proofmode bundle (which includes the image file, metadata, and signatures) to the Verifier. However, only the image file itself is strictly necessary. The Capturer also points the Verifier to the application server's Verify Portal accessible at `SERVER_BASE_URL`/verify. 
+The Capturer sends the image file to the Verifier along with the transaction signature for its Solana registration. This can happen at any point later in time, via any method of communication. For simplicity, this demo uses the Proofmode Capture export option to email the entire zipped Proofmode bundle (which includes the image file, metadata, and signatures) to the Verifier. However, only the image file itself is strictly necessary. The Capturer also points the Verifier to the application server's Verify Portal accessible at `SERVER_BASE_URL`/solana. 
 
 4. **VERIFY**<br>
 The Verifier downloads the Proofmode bundle, navigates to the Verify Portal, and pastes the transaction signature to query on the Solana blockchain. The Verifier then locates the image file within the Proofmode bundle and calculates its SHA-256 hash on their local machine. The result is copied into the Verify Portal for comparison. 
