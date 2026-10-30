@@ -2,6 +2,11 @@
 
 C1-Mini is an application to interface with end users using A2P SMS, perform silent authentication of Subscribers from their mobile web browser, register user SMS memos to the Solana blockchain, and then use transaction data to verify data authenticity.
 
+C1 Mini is an experimental reference implementation developed in 2024 as part of Starling Lab's research into cellular network authentication and digital media provenance. It demonstrates a lightweight workflow for authorizing blockchain registration services using mobile subscriber authentication, without requiring field users to manage blockchain credentials.
+
+This repository preserves the proof-of-concept implementation and developer documentation. It is not a production-ready service and has not been independently validated against current API versions.
+
+
 <details>
 <summary><strong>📚 Table of Contents</strong></summary>
 
